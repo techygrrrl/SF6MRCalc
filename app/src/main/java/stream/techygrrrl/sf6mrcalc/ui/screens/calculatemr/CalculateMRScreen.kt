@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,8 +31,8 @@ import stream.techygrrrl.sf6mrcalc.utils.SF6Utils
 fun CalculateMRScreen(
     modifier: Modifier = Modifier,
 ) {
-    var player1MrInput by rememberSaveable { mutableStateOf("1500") }
-    var player2MrInput by rememberSaveable { mutableStateOf("1400") }
+    var player1MrInput by rememberSaveable { mutableStateOf("") }
+    var player2MrInput by rememberSaveable { mutableStateOf("") }
 
     val player1Mr = player1MrInput.filter { it.isDigit() }.toIntOrNull() ?: 0
     val player2Mr = player2MrInput.filter { it.isDigit() }.toIntOrNull() ?: 0
@@ -65,6 +69,18 @@ fun CalculateMRScreen(
                 keyboardType = KeyboardType.Phone,
             ),
 
+            trailingIcon = {
+                if (player1MrInput != "") {
+                    IconButton(
+                        onClick = {
+                            player1MrInput = ""
+                        }
+                    ) {
+                        Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.form_fr_field_clear))
+                    }
+                }
+            },
+
             singleLine = true,
         )
 
@@ -99,6 +115,18 @@ fun CalculateMRScreen(
                 keyboardType = KeyboardType.Phone,
             ),
 
+            trailingIcon = {
+                if (player2MrInput != "") {
+                    IconButton(
+                        onClick = {
+                            player2MrInput = ""
+                        }
+                    ) {
+                        Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.form_fr_field_clear))
+                    }
+                }
+            },
+
             singleLine = true,
         )
 
@@ -107,22 +135,25 @@ fun CalculateMRScreen(
                 .padding(8.dp)
         )
 
-        Text(
-            text = stringResource(
-                id = R.string.result_player,
-                1,
-                SF6Utils.calculateWinnableMr(player1Mr, player2Mr),
-                SF6Utils.calculateLosableMr(player1Mr, player2Mr),
+        if (player1MrInput != "" && player2MrInput != "") {
+            Text(
+                text = stringResource(
+                    id = R.string.result_player,
+                    1,
+                    SF6Utils.calculateWinnableMr(player1Mr, player2Mr),
+                    SF6Utils.calculateLosableMr(player1Mr, player2Mr),
+                )
             )
-        )
-        Text(
-            text = stringResource(
-                id = R.string.result_player,
-                2,
-                SF6Utils.calculateWinnableMr(player2Mr, player1Mr),
-                SF6Utils.calculateLosableMr(player2Mr, player1Mr),
+            Text(
+                text = stringResource(
+                    id = R.string.result_player,
+                    2,
+                    SF6Utils.calculateWinnableMr(player2Mr, player1Mr),
+                    SF6Utils.calculateLosableMr(player2Mr, player1Mr),
+                )
             )
-        )
+        }
+
     }
 }
 
