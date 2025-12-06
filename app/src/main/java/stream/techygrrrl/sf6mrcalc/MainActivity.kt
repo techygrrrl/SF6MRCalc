@@ -1,33 +1,39 @@
 package stream.techygrrrl.sf6mrcalc
 
+import android.app.UiModeManager
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import stream.techygrrrl.sf6mrcalc.ui.navigation.AppBottomBar
 import stream.techygrrrl.sf6mrcalc.ui.navigation.NavigationRouter
 import stream.techygrrrl.sf6mrcalc.ui.navigation.Route
 import stream.techygrrrl.sf6mrcalc.ui.theme.SF6MRCalcTheme
+import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        forceDarkMode()
         enableEdgeToEdge()
 
         setContent {
+            val themeState by appThemeState()
+
             SF6MRCalcTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
+                    color = themeState.colorScheme.background,
                 ) {
                     val navController = rememberNavController()
 
@@ -51,5 +57,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun forceDarkMode() {
+        val uiModeManager = getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
     }
 }
