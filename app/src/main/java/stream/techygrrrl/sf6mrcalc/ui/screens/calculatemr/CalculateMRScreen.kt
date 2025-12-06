@@ -1,6 +1,8 @@
 package stream.techygrrrl.sf6mrcalc.ui.screens.calculatemr
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,8 +25,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import stream.techygrrrl.sf6mrcalc.R
-import stream.techygrrrl.sf6mrcalc.ui.theme.SF6MRCalcTheme
+import stream.techygrrrl.sf6mrcalc.ui.PreviewTheme
 import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
 import stream.techygrrrl.sf6mrcalc.utils.SF6Utils
 
@@ -42,85 +45,107 @@ fun CalculateMRScreen(
 
     Column(
         modifier = modifier
+            .fillMaxWidth()
             .padding(12.dp)
             .verticalScroll(rememberScrollState()),
     ) {
 
-        OutlinedTextField(
-            value = player1MrInput,
-            onValueChange = { newValue ->
-                player1MrInput = newValue
-            },
-            label = {
-                Text(stringResource(R.string.form_player_1_label))
-            },
-            placeholder = {
-                Text(
-                    text = stringResource(R.string.form_mr_field_placeholder)
-                )
-            },
-            colors = themeState.outlinedTextFieldColors,
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Phone,
-            ),
-            trailingIcon = {
-                if (player1MrInput != "") {
-                    IconButton(
-                        onClick = {
-                            player1MrInput = ""
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Clear,
-                            contentDescription = stringResource(R.string.form_fr_field_clear),
-                        )
-                    }
-                }
-            },
-            singleLine = true,
-        )
-
-        Spacer(
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
-                .padding(8.dp)
-        )
-
-
-        OutlinedTextField(
-            value = player2MrInput,
-            onValueChange = { newValue ->
-                player2MrInput = newValue
-            },
-            label = {
-                Text(stringResource(R.string.form_player_2_label))
-            },
-            placeholder = {
-                Text(
-                    text = stringResource(R.string.form_mr_field_placeholder)
-                )
-            },
-            colors = themeState.outlinedTextFieldColors,
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Phone,
-            ),
-            trailingIcon = {
-                if (player2MrInput != "") {
-                    IconButton(
-                        onClick = {
-                            player2MrInput = ""
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Clear,
-                            contentDescription = stringResource(R.string.form_fr_field_clear),
+                .fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                OutlinedTextField(
+                    value = player1MrInput,
+                    onValueChange = { newValue ->
+                        player1MrInput = newValue
+                    },
+                    label = {
+                        Text(
+                            text = stringResource(R.string.form_player_1_label),
+                            fontSize = 14.sp,
                         )
-                    }
-                }
-            },
-            singleLine = true,
-        )
+                    },
+                    placeholder = {
+                        Text(
+                            text = stringResource(R.string.form_mr_field_placeholder)
+                        )
+                    },
+                    colors = themeState.outlinedTextFieldColors,
+                    modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Phone,
+                    ),
+                    trailingIcon = {
+                        if (player1MrInput != "") {
+                            IconButton(
+                                onClick = {
+                                    player1MrInput = ""
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Clear,
+                                    contentDescription = stringResource(R.string.form_fr_field_clear),
+                                )
+                            }
+                        }
+                    },
+                    singleLine = true,
+                )
+            }
+
+            Spacer(
+                modifier = Modifier
+                    .padding(6.dp)
+            )
+
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                OutlinedTextField(
+                    value = player2MrInput,
+                    onValueChange = { newValue ->
+                        player2MrInput = newValue
+                    },
+                    label = {
+                        Text(
+                            text = stringResource(R.string.form_player_2_label),
+                            fontSize = 14.sp,
+                        )
+                    },
+                    placeholder = {
+                        Text(
+                            text = stringResource(R.string.form_mr_field_placeholder)
+                        )
+                    },
+                    colors = themeState.outlinedTextFieldColors,
+                    modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Phone,
+                    ),
+                    trailingIcon = {
+                        if (player2MrInput != "") {
+                            IconButton(
+                                onClick = {
+                                    player2MrInput = ""
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Clear,
+                                    contentDescription = stringResource(R.string.form_fr_field_clear),
+                                )
+                            }
+                        }
+                    },
+                    singleLine = true,
+                )
+            }
+        }
 
         Spacer(
             modifier = Modifier
@@ -152,7 +177,7 @@ fun CalculateMRScreen(
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    SF6MRCalcTheme {
+    PreviewTheme {
         CalculateMRScreen()
     }
 }
