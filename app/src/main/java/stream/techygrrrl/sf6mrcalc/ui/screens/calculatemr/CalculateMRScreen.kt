@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import stream.techygrrrl.sf6mrcalc.R
 import stream.techygrrrl.sf6mrcalc.ui.PreviewTheme
+import stream.techygrrrl.sf6mrcalc.ui.components.MasterRankImage
 import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
 import stream.techygrrrl.sf6mrcalc.utils.SF6Utils
 
@@ -59,6 +61,8 @@ fun CalculateMRScreen(
                 modifier = Modifier
                     .weight(1f)
             ) {
+                // Input
+
                 OutlinedTextField(
                     value = player1MrInput,
                     onValueChange = { newValue ->
@@ -96,6 +100,30 @@ fun CalculateMRScreen(
                     },
                     singleLine = true,
                 )
+
+                // Output
+
+                if (player1MrInput != "" && player2MrInput != "") {
+                    Text(
+                        text = stringResource(
+                            id = R.string.result_player,
+                            1,
+                            SF6Utils.calculateWinnableMr(player1Mr, player2Mr),
+                            SF6Utils.calculateLosableMr(player1Mr, player2Mr),
+                        )
+                    )
+
+                    Spacer(
+                        modifier = Modifier
+                            .padding(8.dp)
+                    )
+
+                    MasterRankImage(
+                        mr = player1Mr,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
             }
 
             Spacer(
@@ -107,6 +135,8 @@ fun CalculateMRScreen(
                 modifier = Modifier
                     .weight(1f)
             ) {
+                // Input
+
                 OutlinedTextField(
                     value = player2MrInput,
                     onValueChange = { newValue ->
@@ -144,40 +174,41 @@ fun CalculateMRScreen(
                     },
                     singleLine = true,
                 )
+
+                // Output
+
+                if (player1MrInput != "" && player2MrInput != "") {
+                    Text(
+                        text = stringResource(
+                            id = R.string.result_player,
+                            2,
+                            SF6Utils.calculateWinnableMr(player2Mr, player1Mr),
+                            SF6Utils.calculateLosableMr(player2Mr, player1Mr),
+                        )
+                    )
+
+                    Spacer(
+                        modifier = Modifier
+                            .padding(8.dp)
+                    )
+
+                    MasterRankImage(
+                        mr = player2Mr,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
             }
         }
-
-        Spacer(
-            modifier = Modifier
-                .padding(8.dp)
-        )
-
-        if (player1MrInput != "" && player2MrInput != "") {
-            Text(
-                text = stringResource(
-                    id = R.string.result_player,
-                    1,
-                    SF6Utils.calculateWinnableMr(player1Mr, player2Mr),
-                    SF6Utils.calculateLosableMr(player1Mr, player2Mr),
-                )
-            )
-            Text(
-                text = stringResource(
-                    id = R.string.result_player,
-                    2,
-                    SF6Utils.calculateWinnableMr(player2Mr, player1Mr),
-                    SF6Utils.calculateLosableMr(player2Mr, player1Mr),
-                )
-            )
-        }
-
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    PreviewTheme {
+private fun Preview() {
+    PreviewTheme(
+        modifier = Modifier.fillMaxSize()
+    ) {
         CalculateMRScreen()
     }
 }

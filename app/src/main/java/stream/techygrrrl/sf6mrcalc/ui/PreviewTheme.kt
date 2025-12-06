@@ -18,7 +18,7 @@ fun PreviewTheme(
 
     SF6MRCalcTheme {
         Surface(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier,
             color = themeState.colorScheme.background,
         ) {
             content()
