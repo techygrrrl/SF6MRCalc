@@ -30,6 +30,9 @@ private object AppColors {
 data class ExtendedColorPalette(
     val textColor: Color,
     val textColorMuted: Color,
+    val sf6LightPurple: Color,
+    val sf6MediumPurple: Color,
+    val sf6DarkPurple: Color,
     val mrLose: Color,
     val mrWin: Color,
 )
@@ -39,6 +42,9 @@ val AppExtendedColorPalette = ExtendedColorPalette(
     textColorMuted = AppColors.lightGrey,
     mrWin = AppColors.mrWin,
     mrLose = AppColors.mrLose,
+    sf6DarkPurple = AppColors.darkPurple,
+    sf6MediumPurple = AppColors.mediumPurple,
+    sf6LightPurple = AppColors.lightPurple,
 )
 
 private val SF6ColorScheme = darkColorScheme(
