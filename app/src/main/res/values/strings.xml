@@ -8,4 +8,7 @@
     <string name="form_fr_field_clear">Clear input</string>
 
     <string name="result_player">Player %1$d could win %2$d MR or lose %3$d MR</string>
+
+    <string name="route_mr_vs">MR VS Win/Lose</string>
+    <string name="route_mr_reset">MR Reset</string>
 </resources>

@@ -46,29 +46,23 @@ fun CalculateMRScreen(
 
         OutlinedTextField(
             value = player1MrInput,
-
             onValueChange = { newValue ->
                 player1MrInput = newValue
             },
-
-
             label = {
                 Text(stringResource(R.string.form_player_1_label))
             },
-
             placeholder = {
                 Text(
                     text = stringResource(R.string.form_mr_field_placeholder)
                 )
             },
-
             modifier = Modifier
                 .fillMaxWidth(),
 
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Phone,
             ),
-
             trailingIcon = {
                 if (player1MrInput != "") {
                     IconButton(
@@ -76,11 +70,13 @@ fun CalculateMRScreen(
                             player1MrInput = ""
                         }
                     ) {
-                        Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.form_fr_field_clear))
+                        Icon(
+                            imageVector = Icons.Default.Clear,
+                            contentDescription = stringResource(R.string.form_fr_field_clear),
+                        )
                     }
                 }
             },
-
             singleLine = true,
         )
 
@@ -92,29 +88,22 @@ fun CalculateMRScreen(
 
         OutlinedTextField(
             value = player2MrInput,
-
             onValueChange = { newValue ->
                 player2MrInput = newValue
             },
-
-
             label = {
                 Text(stringResource(R.string.form_player_2_label))
             },
-
             placeholder = {
                 Text(
                     text = stringResource(R.string.form_mr_field_placeholder)
                 )
             },
-
             modifier = Modifier
                 .fillMaxWidth(),
-
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Phone,
             ),
-
             trailingIcon = {
                 if (player2MrInput != "") {
                     IconButton(
@@ -122,11 +111,13 @@ fun CalculateMRScreen(
                             player2MrInput = ""
                         }
                     ) {
-                        Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.form_fr_field_clear))
+                        Icon(
+                            imageVector = Icons.Default.Clear,
+                            contentDescription = stringResource(R.string.form_fr_field_clear),
+                        )
                     }
                 }
             },
-
             singleLine = true,
         )
 
