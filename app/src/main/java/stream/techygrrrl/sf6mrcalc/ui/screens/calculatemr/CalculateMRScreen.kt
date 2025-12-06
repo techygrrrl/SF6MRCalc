@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import stream.techygrrrl.sf6mrcalc.R
 import stream.techygrrrl.sf6mrcalc.ui.theme.SF6MRCalcTheme
+import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
 import stream.techygrrrl.sf6mrcalc.utils.SF6Utils
 
 @Composable
@@ -37,6 +38,7 @@ fun CalculateMRScreen(
     val player1Mr = player1MrInput.filter { it.isDigit() }.toIntOrNull() ?: 0
     val player2Mr = player2MrInput.filter { it.isDigit() }.toIntOrNull() ?: 0
 
+    val themeState by appThemeState()
 
     Column(
         modifier = modifier
@@ -57,9 +59,8 @@ fun CalculateMRScreen(
                     text = stringResource(R.string.form_mr_field_placeholder)
                 )
             },
-            modifier = Modifier
-                .fillMaxWidth(),
-
+            colors = themeState.outlinedTextFieldColors,
+            modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Phone,
             ),
@@ -99,8 +100,8 @@ fun CalculateMRScreen(
                     text = stringResource(R.string.form_mr_field_placeholder)
                 )
             },
-            modifier = Modifier
-                .fillMaxWidth(),
+            colors = themeState.outlinedTextFieldColors,
+            modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Phone,
             ),

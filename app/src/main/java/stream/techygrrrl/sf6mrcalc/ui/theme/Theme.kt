@@ -2,9 +2,13 @@ package stream.techygrrrl.sf6mrcalc.ui.theme
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
@@ -81,17 +85,28 @@ private val SF6ColorScheme = darkColorScheme(
 data class ThemeState(
     val colorScheme: ColorScheme,
     val colorPalette: ExtendedColorPalette,
+    val typography: Typography,
+    val outlinedTextFieldColors: TextFieldColors,
 )
 
 @Composable
 fun appThemeState(): State<ThemeState> {
-    return remember {
-        val colorScheme = SF6ColorScheme
+    val colorScheme = SF6ColorScheme
 
+    val outlinedTextFieldColors = OutlinedTextFieldDefaults.colors(
+        focusedPlaceholderColor = AppExtendedColorPalette.textColorMuted,
+        disabledPlaceholderColor = AppExtendedColorPalette.textColorMuted,
+        unfocusedPlaceholderColor = AppExtendedColorPalette.textColorMuted,
+        errorPlaceholderColor = AppExtendedColorPalette.textColorMuted,
+    )
+
+    return remember {
         mutableStateOf(
             ThemeState(
                 colorScheme = colorScheme,
                 colorPalette = AppExtendedColorPalette,
+                typography = AppTypography,
+                outlinedTextFieldColors = outlinedTextFieldColors,
             )
         )
     }
@@ -101,9 +116,11 @@ fun appThemeState(): State<ThemeState> {
 fun SF6MRCalcTheme(
     content: @Composable () -> Unit
 ) {
+    val themeState by appThemeState()
+
     MaterialTheme(
-        colorScheme = SF6ColorScheme,
-        typography = AppTypography,
+        colorScheme = themeState.colorScheme,
+        typography = themeState.typography,
         content = content
     )
 }
