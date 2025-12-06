@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SF6 MR Calc</string>
+
+    <string name="form_player_1_label">Player 1 MR</string>
+    <string name="form_player_2_label">Player 2 MR</string>
+
+    <string name="form_mr_field_placeholder">e.g. 1500</string>
+
+    <string name="result_player">Player %1$d could win %2$d MR or lose %3$d MR</string>
+</resources>
