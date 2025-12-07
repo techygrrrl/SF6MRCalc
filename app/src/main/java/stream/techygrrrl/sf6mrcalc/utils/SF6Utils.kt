@@ -9,6 +9,8 @@ object SF6Utils {
     /**
      * Performs the rebalancing operation to calculate your next phase MR
      * Uses a reverse-engineered Rating Compression Formula / Rating Regression
+     *
+     * CREDIT: Thanks JB~!
      */
     fun calculateResetMr(mr: Int): Int {
         return (((mr - 1500) * 0.3) + 1500).roundToInt()
@@ -37,7 +39,7 @@ object SF6Utils {
     /**
      * Calculates the Elo rating change for Player 1 (p1).
      *
-     * Thanks, Gemini
+     * CREDIT: Thanks, Gemini
      *
      * @param p1 Player 1's current rating.
      * @param p2 Player 2's current rating.
