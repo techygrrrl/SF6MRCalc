@@ -13,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import stream.techygrrrl.sf6mrcalc.ui.components.AppTopBar
 import stream.techygrrrl.sf6mrcalc.ui.navigation.AppBottomBar
 import stream.techygrrrl.sf6mrcalc.ui.navigation.NavigationRouter
 import stream.techygrrrl.sf6mrcalc.ui.navigation.Route
@@ -39,9 +40,9 @@ class MainActivity : ComponentActivity() {
 
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
-//                        topBar = {
-//
-//                        },
+                        topBar = {
+                            AppTopBar()
+                        },
                         bottomBar = {
                             AppBottomBar(navController)
                         },

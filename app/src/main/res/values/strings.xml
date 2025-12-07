@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">SF6 MR Calc</string>
+    <string name="app_name_long">SF6 Master Rate Calculator</string>
 
     <string name="form_player_1_label">Player 1 MR</string>
     <string name="form_player_2_label">Player 2 MR</string>

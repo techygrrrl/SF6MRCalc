@@ -50,7 +50,7 @@ fun CalculateMRResetScreen(
         modifier = modifier
             .fillMaxWidth()
             .padding(
-                vertical = 12.dp,
+                vertical = 20.dp,
                 horizontal = 12.dp,
             )
             .verticalScroll(rememberScrollState()),

@@ -53,7 +53,7 @@ fun CalculateMRScreen(
         modifier = modifier
             .fillMaxWidth()
             .padding(
-                vertical = 12.dp,
+                vertical = 20.dp,
                 horizontal = 12.dp,
             )
             .verticalScroll(rememberScrollState()),
@@ -166,7 +166,7 @@ fun CalculateMRScreen(
                     },
                     placeholder = {
                         Text(
-                            text = stringResource(R.string.form_mr_field_placeholder)
+                            text = stringResource(R.string.form_mr_field_placeholder, 1605)
                         )
                     },
                     colors = themeState.outlinedTextFieldColors,
