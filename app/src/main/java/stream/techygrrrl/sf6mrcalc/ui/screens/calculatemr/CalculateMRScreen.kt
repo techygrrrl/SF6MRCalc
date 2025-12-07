@@ -1,13 +1,16 @@
 package stream.techygrrrl.sf6mrcalc.ui.screens.calculatemr
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -30,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import stream.techygrrrl.sf6mrcalc.R
 import stream.techygrrrl.sf6mrcalc.ui.PreviewTheme
 import stream.techygrrrl.sf6mrcalc.ui.components.MasterRankImage
+import stream.techygrrrl.sf6mrcalc.ui.components.MatchResultsTable
 import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
 import stream.techygrrrl.sf6mrcalc.utils.SF6Utils
 
@@ -48,15 +52,20 @@ fun CalculateMRScreen(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(
+                vertical = 12.dp,
+                horizontal = 6.dp,
+            )
             .verticalScroll(rememberScrollState()),
     ) {
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
+                .fillMaxHeight()
                 .fillMaxWidth()
         ) {
+            // Player 1 column
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -104,33 +113,40 @@ fun CalculateMRScreen(
                 // Output
 
                 if (player1MrInput != "" && player2MrInput != "") {
-                    Text(
-                        text = stringResource(
-                            id = R.string.result_player,
-                            1,
-                            SF6Utils.calculateWinnableMr(player1Mr, player2Mr),
-                            SF6Utils.calculateLosableMr(player1Mr, player2Mr),
-                        )
-                    )
-
-                    Spacer(
-                        modifier = Modifier
-                            .padding(8.dp)
-                    )
-
                     MasterRankImage(
                         mr = player1Mr,
                         modifier = Modifier
+                            .padding(
+                                vertical = 12.dp,
+                            )
                             .fillMaxWidth()
+                    )
+
+                    MatchResultsTable(
+                        mr = player1Mr,
+                        win = SF6Utils.calculateWinnableMr(player1Mr, player2Mr),
+                        lose = SF6Utils.calculateLosableMr(player1Mr, player2Mr),
+                        modifier = Modifier
+                            .background(
+                                color = themeState.colorScheme.surface.copy(alpha = 0.5f),
+                                shape = RoundedCornerShape(12.dp),
+                            )
+                            .padding(
+                                vertical = 8.dp,
+                                horizontal = 16.dp,
+                            )
                     )
                 }
             }
+
 
             Spacer(
                 modifier = Modifier
                     .padding(6.dp)
             )
 
+
+            // Player 2 column
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -178,24 +194,28 @@ fun CalculateMRScreen(
                 // Output
 
                 if (player1MrInput != "" && player2MrInput != "") {
-                    Text(
-                        text = stringResource(
-                            id = R.string.result_player,
-                            2,
-                            SF6Utils.calculateWinnableMr(player2Mr, player1Mr),
-                            SF6Utils.calculateLosableMr(player2Mr, player1Mr),
-                        )
-                    )
-
-                    Spacer(
-                        modifier = Modifier
-                            .padding(8.dp)
-                    )
-
                     MasterRankImage(
                         mr = player2Mr,
                         modifier = Modifier
+                            .padding(
+                                vertical = 12.dp,
+                            )
                             .fillMaxWidth()
+                    )
+
+                    MatchResultsTable(
+                        mr = player2Mr,
+                        win = SF6Utils.calculateWinnableMr(player2Mr, player1Mr),
+                        lose = SF6Utils.calculateLosableMr(player2Mr, player1Mr),
+                        modifier = Modifier
+                            .background(
+                                color = themeState.colorScheme.surface.copy(alpha = 0.5f),
+                                shape = RoundedCornerShape(12.dp),
+                            )
+                            .padding(
+                                vertical = 8.dp,
+                                horizontal = 16.dp,
+                            )
                     )
                 }
             }

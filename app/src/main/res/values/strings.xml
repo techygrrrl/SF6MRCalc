@@ -16,4 +16,10 @@
     <string name="master_rank_image_content_description_high_master">High Master</string>
     <string name="master_rank_image_content_description_grand_master">Grand Master</string>
     <string name="master_rank_image_content_description_ultimate_master">Ultimate Master</string>
+
+    <string name="mr_display">%1$d MR</string>
+    <string name="mr_display_win">+%1$d MR</string>
+    <string name="mr_display_lose">-%1$d MR</string>
+    <string name="result_label_win">Win</string>
+    <string name="result_label_lose">Lose</string>
 </resources>

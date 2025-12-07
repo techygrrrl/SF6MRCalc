@@ -40,7 +40,7 @@ fun MasterRankImage(
     )
 }
 
-private class MasterRankImagePreviewParameterProvider : PreviewParameterProvider<Int> {
+private class MasterRankImagePreviewParameterConfig : PreviewParameterProvider<Int> {
     override val values: Sequence<Int>
         get() = sequenceOf(
             1500,
@@ -51,10 +51,10 @@ private class MasterRankImagePreviewParameterProvider : PreviewParameterProvider
 
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun Preview(
-    @PreviewParameter(MasterRankImagePreviewParameterProvider::class) mr: Int,
+    @PreviewParameter(MasterRankImagePreviewParameterConfig::class) mr: Int,
 ) {
     PreviewTheme {
         MasterRankImage(mr = mr)
