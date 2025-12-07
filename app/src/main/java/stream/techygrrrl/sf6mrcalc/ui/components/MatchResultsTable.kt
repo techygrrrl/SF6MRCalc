@@ -138,7 +138,6 @@ private class MatchResultsTablePreviewParameterConfig : PreviewParameterProvider
                 win = 1,
                 lose = 15,
             ),
-
             ResultsConfig(
                 mr = 1818,
                 win = 13,
@@ -148,6 +147,11 @@ private class MatchResultsTablePreviewParameterConfig : PreviewParameterProvider
                 mr = 1350,
                 win = 13,
                 lose = 3,
+            ),
+            ResultsConfig(
+                mr = 2300,
+                win = 0,
+                lose = 16,
             ),
         )
 }
