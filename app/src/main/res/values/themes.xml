@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SF6MRCalc" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.SF6MRCalc" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowSplashScreenBackground">@color/darkPurple</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/darkPurple</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/app_icon_fg_padded</item>
+    </style>
 </resources>
