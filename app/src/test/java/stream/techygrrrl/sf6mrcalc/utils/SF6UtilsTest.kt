@@ -7,7 +7,12 @@ class SF6UtilsTest {
 
     @Test
     fun `calculateResetMr returns the correct MR after the rebalance`() {
-        assertEquals(1592, SF6Utils.calculateResetMr(1808))
+        // Phase 9 data into Phase 10
+        assertEquals(1532, SF6Utils.calculateResetMr(1605)) // Manon
+        assertEquals(1486, SF6Utils.calculateResetMr(1454)) // Cammy
+        assertEquals(1485, SF6Utils.calculateResetMr(1451)) // Elena
+        assertEquals(1481, SF6Utils.calculateResetMr(1436)) // C. Viper
+        assertEquals(1478, SF6Utils.calculateResetMr(1426)) // Juri
     }
 
     @Test
