@@ -7,6 +7,14 @@ import kotlin.math.roundToInt
 object SF6Utils {
 
     /**
+     * Performs the rebalancing operation to calculate your next phase MR
+     * Uses a reverse-engineered Rating Compression Formula / Rating Regression
+     */
+    fun calculateResetMr(mr: Int): Int {
+        return (((mr - 1500) * 0.3) + 1500).roundToInt()
+    }
+
+    /**
      * Returns the MR that the player (first argument) could take from the opponent (second argument) if the player wins
      */
     fun calculateWinnableMr(playerMr: Int, opponentMr: Int): Int =

@@ -26,11 +26,11 @@ fun MasterRankImage(
     }
 
     val contentDescriptionResId = rememberSaveable<Int>(mr) {
-        if (mr >= 1800) return@rememberSaveable R.string.master_rank_image_content_description_ultimate_master
-        if (mr >= 1700) return@rememberSaveable R.string.master_rank_image_content_description_grand_master
-        if (mr >= 1600) return@rememberSaveable R.string.master_rank_image_content_description_high_master
+        if (mr >= 1800) return@rememberSaveable R.string.master_rank_ultimate_master
+        if (mr >= 1700) return@rememberSaveable R.string.master_rank_grand_master
+        if (mr >= 1600) return@rememberSaveable R.string.master_rank_high_master
 
-        return@rememberSaveable R.string.master_rank_image_content_description_master
+        return@rememberSaveable R.string.master_rank_master
     }
 
     Image(

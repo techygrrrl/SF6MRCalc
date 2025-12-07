@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import stream.techygrrrl.sf6mrcalc.ui.screens.calculatemr.CalculateMRScreen
+import stream.techygrrrl.sf6mrcalc.ui.screens.calculatemrreset.CalculateMRResetScreen
 
 
 @Composable
@@ -26,7 +27,7 @@ fun NavigationRouter(
         }
 
         composable<Route.MasterRateReset> { backStackEntry ->
-            Text("TODO")
+            CalculateMRResetScreen()
         }
     }
 }
