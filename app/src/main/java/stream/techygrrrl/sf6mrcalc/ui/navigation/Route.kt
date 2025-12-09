@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.PlayArrow
+import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -39,7 +40,7 @@ sealed interface Route {
 
         override val icon: @Composable () -> Unit = {
             Icon(
-                Icons.Outlined.Delete,
+                Icons.Outlined.Refresh,
                 contentDescription = stringResource(labelRes),
             )
         }

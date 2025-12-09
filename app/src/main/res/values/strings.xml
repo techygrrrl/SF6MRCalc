@@ -2,6 +2,8 @@
     <string name="app_name">SF6 MR Calc</string>
     <string name="app_name_long">SF6 Master Rate Calculator</string>
 
+    <string name="top_bar_clear">Clear</string>
+
     <string name="form_player_1_label">Player 1 MR</string>
     <string name="form_player_2_label">Player 2 MR</string>
 
@@ -14,6 +16,8 @@
 
     <string name="route_mr_vs">MR VS Win/Lose</string>
     <string name="route_mr_reset">MR Reset</string>
+
+    <string name="mr_vs_button_player_win">Player %1$d won</string>
 
     <string name="master_rank_master">Master</string>
     <string name="master_rank_high_master">High Master</string>

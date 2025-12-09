@@ -1,7 +1,6 @@
-package stream.techygrrrl.sf6mrcalc
+package stream.techygrrrl.sf6mrcalc.ui
 
 import android.app.UiModeManager
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,8 +21,12 @@ import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
 
 class MainActivity : ComponentActivity() {
 
+    private lateinit var mainViewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mainViewModel = MainViewModel()
 
         forceDarkMode()
         enableEdgeToEdge()
@@ -41,7 +44,16 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
                         topBar = {
-                            AppTopBar()
+                            AppTopBar(
+                                onResetPressed = {
+                                    // Reset all the things
+                                    // MR VS. Win/Lose
+                                    mainViewModel.onPlayer1MrChange("")
+                                    mainViewModel.onPlayer2MrChange("")
+                                    // MR Reset
+                                    mainViewModel.onCurrentMrChange("")
+                                }
+                            )
                         },
                         bottomBar = {
                             AppBottomBar(navController)
@@ -50,6 +62,7 @@ class MainActivity : ComponentActivity() {
                         NavigationRouter(
                             navHostController = navController,
                             startDestination = Route.MasterRateVersusWinLose,
+                            viewModel = mainViewModel,
                             modifier = Modifier.padding(innerPadding)
                         ) { route ->
                             navController.navigate(route)
@@ -61,7 +74,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun forceDarkMode() {
-        val uiModeManager = getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
+        val uiModeManager = getSystemService(UI_MODE_SERVICE) as UiModeManager
         uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
     }
 }

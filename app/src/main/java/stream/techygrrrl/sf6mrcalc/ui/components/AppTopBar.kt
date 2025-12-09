@@ -1,6 +1,10 @@
 package stream.techygrrrl.sf6mrcalc.ui.components
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -15,7 +19,10 @@ import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppTopBar(modifier: Modifier = Modifier) {
+fun AppTopBar(
+    onResetPressed: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val themeState by appThemeState()
 
     TopAppBar(
@@ -31,6 +38,18 @@ fun AppTopBar(modifier: Modifier = Modifier) {
             containerColor = themeState.colorScheme.primary,
             titleContentColor = themeState.colorScheme.onPrimary,
         ),
+        actions = {
+            IconButton(
+                onClick = {
+                    onResetPressed()
+                }
+            ) {
+                Icon(
+                    Icons.Outlined.Delete,
+                    contentDescription = stringResource(R.string.top_bar_clear),
+                )
+            }
+        },
         modifier = modifier,
     )
 }

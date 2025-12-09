@@ -17,9 +17,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -28,22 +25,40 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import stream.techygrrrl.sf6mrcalc.R
+import stream.techygrrrl.sf6mrcalc.ui.MainViewModel
 import stream.techygrrrl.sf6mrcalc.ui.PreviewTheme
 import stream.techygrrrl.sf6mrcalc.ui.components.MasterRankImage
 import stream.techygrrrl.sf6mrcalc.ui.theme.appThemeState
-import stream.techygrrrl.sf6mrcalc.utils.SF6Utils
 
 @Composable
 fun CalculateMRResetScreen(
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
 
-    var currentMrInput by rememberSaveable { mutableStateOf("") }
-    val currentMr = currentMrInput.filter { it.isDigit() }.toIntOrNull() ?: 0
+    val currentMrInput by viewModel.currentMrInput.collectAsStateWithLifecycle()
+    val currentMr by viewModel.currentMr.collectAsStateWithLifecycle()
+    val resetMrValue by viewModel.mrResetValue.collectAsStateWithLifecycle()
 
-    val resetMrValue = SF6Utils.calculateResetMr(currentMr)
+    Content(
+        currentMrInput = currentMrInput,
+        currentMr = currentMr,
+        resetMrValue = resetMrValue,
+        onCurrentMrChange = viewModel::onCurrentMrChange,
+        modifier = modifier,
+    )
 
+}
+@Composable
+private fun Content(
+    currentMrInput: String,
+    currentMr: Int,
+    resetMrValue: Int,
+    onCurrentMrChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val themeState by appThemeState()
 
     Column(
@@ -60,7 +75,7 @@ fun CalculateMRResetScreen(
         OutlinedTextField(
             value = currentMrInput,
             onValueChange = { newValue ->
-                currentMrInput = newValue
+                onCurrentMrChange(newValue)
             },
             label = {
                 Text(
@@ -82,7 +97,7 @@ fun CalculateMRResetScreen(
                 if (currentMrInput != "") {
                     IconButton(
                         onClick = {
-                            currentMrInput = ""
+                            onCurrentMrChange("")
                         }
                     ) {
                         Icon(
@@ -176,6 +191,11 @@ private fun Preview() {
     PreviewTheme(
         modifier = Modifier.fillMaxSize()
     ) {
-        CalculateMRResetScreen()
+        Content(
+            currentMrInput = "1501",
+            currentMr = 1501,
+            resetMrValue = 1500,
+            onCurrentMrChange = {},
+        )
     }
 }
