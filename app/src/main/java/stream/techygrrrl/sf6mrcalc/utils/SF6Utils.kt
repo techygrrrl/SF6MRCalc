@@ -1,6 +1,9 @@
 package stream.techygrrrl.sf6mrcalc.utils
 
+import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlin.math.abs
+import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
@@ -10,10 +13,36 @@ object SF6Utils {
      * Performs the rebalancing operation to calculate your next phase MR
      * Uses a reverse-engineered Rating Compression Formula / Rating Regression
      *
+     * ((mr - 1500) * 0.3) + 1500
+     *
      * CREDIT: Thanks JB~!
      */
     fun calculateResetMr(mr: Int): Int {
-        return (((mr - 1500) * 0.3) + 1500).roundToInt()
+        // Initial algo
+        // return (((mr - 1500) * 0.3) + 1500).roundToInt()
+
+        // Banker's zero rounding algo
+        /*val currentMr = BigDecimal(mr)
+        val anchor = BigDecimal("1500")
+        val multiplier = BigDecimal("0.3")
+
+        val result = currentMr
+            .subtract(anchor)
+            .multiply(multiplier)
+            .add(anchor)
+
+        return result.setScale(0, RoundingMode.HALF_EVEN).toInt()*/
+
+        // Rounding half away from zero algo
+        val anchor = 1500
+        val multiplier = 0.3
+        val deviation = (mr - anchor) * multiplier
+
+        val roundedDeviation = BigDecimal(deviation.toString())
+            .setScale(0, RoundingMode.HALF_UP)
+            .toInt()
+
+        return anchor + roundedDeviation
     }
 
     /**
