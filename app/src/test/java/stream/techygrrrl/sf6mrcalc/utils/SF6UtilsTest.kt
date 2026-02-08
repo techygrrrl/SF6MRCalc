@@ -14,6 +14,7 @@ class SF6UtilsTest {
         assertEquals(1481, SF6Utils.calculateResetMr(1436)) // C. Viper
         assertEquals(1478, SF6Utils.calculateResetMr(1426)) // Juri
         assertEquals(1438, SF6Utils.calculateResetMr(1295)) // JB's Cammy (shouldn't be 1439)
+        assertEquals(1447, SF6Utils.calculateResetMr(1325)) // some random person JB found
     }
 
     @Test
