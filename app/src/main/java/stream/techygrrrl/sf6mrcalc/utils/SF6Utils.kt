@@ -1,6 +1,7 @@
 package stream.techygrrrl.sf6mrcalc.utils
 
 import kotlin.math.abs
+import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
@@ -13,7 +14,17 @@ object SF6Utils {
      * CREDIT: Thanks JB~!
      */
     fun calculateResetMr(mr: Int): Int {
-        return (((mr - 1500) * 0.3) + 1500).roundToInt()
+        // If .5 we need to round down
+        val result = (((mr - 1500) * 0.3) + 1500)
+        val remainder = result % 1
+
+        println("Result: $result; Remainder: $remainder")
+
+        return if (remainder == 0.5) {
+            floor(result).roundToInt()
+        } else {
+            result.roundToInt()
+        }
     }
 
     /**
