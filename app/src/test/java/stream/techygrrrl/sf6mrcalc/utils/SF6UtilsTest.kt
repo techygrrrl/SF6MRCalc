@@ -17,6 +17,7 @@ class SF6UtilsTest {
         assertEquals(1772, SF6Utils.calculateResetMr(2405)) // 2Bassa
         assertEquals(1407, SF6Utils.calculateResetMr(1189)) // some poor low master vs. 2Bassa
         assertEquals(1447, SF6Utils.calculateResetMr(1325)) // some random person JB found
+        assertEquals(1520, SF6Utils.calculateResetMr(1565)) // a different random person JB found
     }
 
     @Test
