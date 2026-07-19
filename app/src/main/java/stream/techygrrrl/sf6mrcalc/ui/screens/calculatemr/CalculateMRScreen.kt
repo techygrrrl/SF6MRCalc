@@ -152,7 +152,8 @@ private fun Content(
                         mr = player1Mr,
                         modifier = Modifier
                             .padding(
-                                vertical = 12.dp,
+                                vertical = 8.dp,
+                                horizontal = 12.dp,
                             )
                             .fillMaxWidth()
                     )
@@ -251,7 +252,8 @@ private fun Content(
                         mr = player2Mr,
                         modifier = Modifier
                             .padding(
-                                vertical = 12.dp,
+                                vertical = 8.dp,
+                                horizontal = 12.dp,
                             )
                             .fillMaxWidth()
                     )
